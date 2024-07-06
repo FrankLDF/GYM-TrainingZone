@@ -1,16 +1,21 @@
-import express from "express"
-import cors from "cors"
-import morgan from "morgan"
-import v1clientRoute from "./src/v1/routes/clientsRoutes.js"
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import v1clientRoute from "./src/v1/routes/users/users.routes..js";
+import dotenv from "dotenv";
 
-const app = express()
-const PORT = process.env.PORT || 4000
+dotenv.config();
 
-//config midelwares 
-app.use(morgan('dev'))
-app.use(cors())
-app.use(express.json())
+const app = express();
+const PORT = process.env.PORT || 4000;
 
-app.use("/v1TZ", v1clientRoute)
+//config midelwares
+app.use(morgan("dev"));
+app.use(cors());
+app.use(express.json());
 
-app.listen(PORT,()=>console.log(`server on port ${PORT}`))
+app.use("/v1", v1clientRoute);
+
+app.listen(PORT, () =>
+  console.log(`server on listen in http://localhost:${PORT}`)
+);
